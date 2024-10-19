@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrasi</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section class="vh-100">
+        <div class="container-fluid py-3 px-lg-5 py-lg-4 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-6 h-100 d-none d-lg-block">
+                    <div class="rounded-5 h-100 d-flex flex-column justify-content-center position-relative overflow-hidden"
+                        style="background-color: rgba(106, 191, 106, 0.2);">
+                        <div class="top-0 start-0 px-5 mt-5 pt-5">
+                            <img class="img-fluid" src="img/logo-auth.png" alt="login">
+                        </div>
+                        <div class="bottom-0 end-0">
+                            <img class="img-fluid d-block ms-auto" src="img/ui-regist.png" alt="login">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6 h-100 align-content-center px-lg-5">
+                    <div>
+                        <div class="text-center">
+                            <h2 class="text-bizhub-primary fw-semibold" style="font-size: 34px;">Daftar</h2>
+                            <div class="my-3">
+                                <button onclick="switchTab('konsumen')" class="btn btn-bizhub-outline-primary active">Konsumen</button>
+                                <button onclick="switchTab('umkm')" class="btn btn-bizhub-outline-primary">Pelaku UMKM</button>
+                            </div>
+                        </div>
+                        <div id="konsumen" class="tab-content">
+                            <div>
+                                <p class="text-center">Selamat datang, anda mendaftar sebagai Konsumen</p>
+                                <form action="path/to/auth/register-konsumen" method="post" onsubmit="submitKonsumen(event)">
+                                    <div class="row align-items-center">
+                                        <div class="col-6 col-md-6">
+                                            <div class="form-username">
+                                                <p class="form-label">Username</p>
+                                                <input type="text" name="username" placeholder="Masukan username" required>
+                                            </div>
+                                            <small class="text-danger m-2" id="error-username"></small>
+                                        </div>
+                                        <div class="col-6 col-md-6">
+                                            <div class="form-name">
+                                                <p class="form-label">Name</p>
+                                                <input type="text" name="name" placeholder="Masukan nama" required>
+                                            </div>
+                                            <small class="text-danger m-2" id="error-name"></small>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-email">
+                                                <p class="form-label">Email</p>
+                                                <input type="email" name="email" placeholder="(ex : user@email.com)" required>
+                                            </div>
+                                            <small class="text-danger m-2" id="error-email"></small>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-password">
+                                                <p class="form-label">Password</p>
+                                                <div class="input-password">
+                                                    <input type="password" name="password" placeholder="Masukan kata sandi" autocomplete="new-password" required>
+                                                    <i class="far fa-eye" onclick="togglePassword(this)"></i>
+                                                </div>
+                                            </div>
+                                            <small class="text-danger m-2" id="error-password"></small>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-no-telp">
+                                                <p class="form-label">Nomor Telepon</p>
+                                                <input type="text" name="phone_number" placeholder="Masukan no telephone" required>
+                                            </div>
+                                            <small class="text-danger m-2" id="error-phone_number"></small>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-address">
+                                                <p class="form-label">Alamat</p>
+                                                <input type="text" name="address" placeholder="Masukan alamat" required>
+                                            </div>
+                                            <small class="text-danger m-2" id="error-address"></small>
+                                        </div>
+                                    </div>
+                                    <div class="form-button">
+                                        <button type="submit">Daftar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div id="umkm" class="tab-content" style="display:none;">
+                            <div>
+                                <p class="text-center">Selamat datang, anda mendaftar sebagai Pelaku UMKM</p>
+                                <form action="path/to/auth/register-umkm" method="post" onsubmit="submitUMKM(event)">
+                                    <div class="row align-items-center">
+                                        <div class="col-6 col-md-6">
+                                            <div class="form-username">
+                                                <p class="form-label">Username</p>
+                                                <input type="text" name="username" placeholder="Masukan username" required>
+                                            </div>
+                                            <small class="text-danger m-2" id="error-umkm-username"></small>
+                                        </div>
+                                        <div class="col-6 col-md-6">
+                                            <div class="form-name">
+                                                <p class="form-label">Nama UMKM</p>
+                                                <input type="text" name="name" placeholder="Masukan nama" required>
+                                            </div>
+                                            <small class="text-danger m-2" id="error-umkm-name"></small>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-email">
+                                                <p class="form-label">Email</p>
+                                                <input type="email" name="email" placeholder="(ex : user@email.com)" required>
+                                            </div>
+                                            <small class="text-danger m-2" id="error-umkm-email"></small>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-password">
+                                                <p class="form-label">Password</p>
+                                                <div class="input-password">
+                                                    <input type="password" name="password" placeholder="Masukan kata sandi" autocomplete="new-password" required>
+                                                    <i class="far fa-eye" onclick="togglePassword(this)"></i>
+                                                </div>
+                                            </div>
+                                            <small class="text-danger m-2" id="error-umkm-password"></small>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-no-telp">
+                                                <p class="form-label">Nomor Telepon</p>
+                                                <input type="text" name="phone_number" placeholder="Masukan no telephone" required>
+                                            </div>
+                                            <small class="text-danger m-2" id="error-umkm-phone_number"></small>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-address">
+                                                <p class="form-label">Alamat</p>
+                                                <input type="text" name="address" placeholder="Masukan alamat" required>
+                                            </div>
+                                            <small class="text-danger m-2" id="error-umkm-address"></small>
+                                        </div>
+                                    </div>
+                                    <div class="form-email">
+                                        <p class="form-label">NPWP</p>
+                                        <input type="text" name="npwp" maxlength="20" placeholder="Masukan NPWP (ex : 12.312.312.3-213.123)" required>
+                                        <small class="text-danger m-2" id="error-umkm-npwp"></small>
+                                    </div>
+                                    <div class="form-button">
+                                        <button type="submit">Daftar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="modal" id="successModal">
+      <div class="modal-content">
+          <span class="close" id="closeModal">&times;</span>
+          <h2 class="text-bizhub-secondary">Daftar berhasil!</h2>
+          <p>Terima kasih telah mendaftar</p>
+      </div>
+  </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function switchTab(tab) {
+            // Hide both tab contents
+            document.getElementById('konsumen').style.display = 'none';
+            document.getElementById('umkm').style.display = 'none';
+
+            // Show the selected tab
+            document.getElementById(tab).style.display = 'block';
+
+            // Update button styles
+            document.querySelectorAll('.btn-bizhub-outline-primary').forEach(button => {
+                button.classList.remove('active');
+            });
+            document.querySelector(`button[onclick="switchTab('${tab}')"]`).classList.add('active');
+        }
+
+        function togglePassword(icon) {
+            const input = icon.previousElementSibling;
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('far', 'fa-eye');
+                icon.classList.add('far', 'fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('far', 'fa-eye-slash');
+                icon.classList.add('far', 'fa-eye');
+            }
+        }
+
+        function submitKonsumen(event) {
+            event.preventDefault();
+            const form = event.target;
+            const formData = new FormData(form);
+
+            // Reset error messages
+            document.getElementById('error-username').innerText = '';
+            document.getElementById('error-name').innerText = '';
+            document.getElementById('error-email').innerText = '';
+            document.getElementById('error-password').innerText = '';
+            document.getElementById('error-phone_number').innerText = '';
+            document.getElementById('error-address').innerText = '';
+
+            // Validate fields
+            let isValid = true;
+
+            // Username validation
+            if (!formData.get('username')) {
+                document.getElementById('error-username').innerText = 'Username is required.';
+                isValid = false;
+            }
+
+            // Name validation
+            if (!formData.get('name')) {
+                document.getElementById('error-name').innerText = 'Name is required.';
+                isValid = false;
+            }
+
+            // Email validation
+            const email = formData.get('email');
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Simple email regex
+            if (!email) {
+                document.getElementById('error-email').innerText = 'Email is required.';
+                isValid = false;
+            } else if (!emailPattern.test(email)) {
+                document.getElementById('error-email').innerText = 'Email format is invalid.';
+                isValid = false;
+            }
+
+            // Password validation
+            if (!formData.get('password')) {
+                document.getElementById('error-password').innerText = 'Password is required.';
+                isValid = false;
+            }
+
+            // Phone number validation
+            const phoneNumber = formData.get('phone_number');
+            const phonePattern = /^\d+$/; // Only digits allowed
+            if (!phoneNumber) {
+                document.getElementById('error-phone_number').innerText = 'Phone number is required.';
+                isValid = false;
+            } else if (!phonePattern.test(phoneNumber)) {
+                document.getElementById('error-phone_number').innerText = 'Phone number must contain only digits.';
+                isValid = false;
+            }
+
+            // Address validation
+            if (!formData.get('address')) {
+                document.getElementById('error-address').innerText = 'Address is required.';
+                isValid = false;
+            }
+
+            if (isValid) {
+                // Perform the registration (e.g., send the data to the server)
+                fetch(form.action, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    if (data.success) {
+                        alert('Registration successful!');
+                    } else {
+                        alert('Registration failed: ' + data.message);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            }
+            document.getElementById('successModal').style.display = 'block';
+        }
+
+        function submitUMKM(event) {
+            event.preventDefault();
+            const form = event.target;
+            const formData = new FormData(form);
+
+            // Reset error messages
+            document.getElementById('error-umkm-username').innerText = '';
+            document.getElementById('error-umkm-name').innerText = '';
+            document.getElementById('error-umkm-email').innerText = '';
+            document.getElementById('error-umkm-password').innerText = '';
+            document.getElementById('error-umkm-phone_number').innerText = '';
+            document.getElementById('error-umkm-address').innerText = '';
+            document.getElementById('error-umkm-npwp').innerText = '';
+
+            // Validate fields
+            let isValid = true;
+
+            // Username validation
+            if (!formData.get('username')) {
+                document.getElementById('error-umkm-username').innerText = 'Username is required.';
+                isValid = false;
+            }
+
+            // Name validation
+            if (!formData.get('name')) {
+                document.getElementById('error-umkm-name').innerText = 'Name is required.';
+                isValid = false;
+            }
+
+            // Email validation
+            const email = formData.get('email');
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Simple email regex
+            if (!email) {
+                document.getElementById('error-umkm-email').innerText = 'Email is required.';
+                isValid = false;
+            } else if (!emailPattern.test(email)) {
+                document.getElementById('error-umkm-email').innerText = 'Email format is invalid.';
+                isValid = false;
+            }
+
+            // Password validation
+            if (!formData.get('password')) {
+                document.getElementById('error-umkm-password').innerText = 'Password is required.';
+                isValid = false;
+            }
+
+            // Phone number validation
+            const phoneNumber = formData.get('phone_number');
+            const phonePattern = /^\d+$/; // Only digits allowed
+            if (!phoneNumber) {
+                document.getElementById('error-umkm-phone_number').innerText = 'Phone number is required.';
+                isValid = false;
+            } else if (!phonePattern.test(phoneNumber)) {
+                document.getElementById('error-umkm-phone_number').innerText = 'Phone number must contain only digits.';
+                isValid = false;
+            }
+
+            // Address validation
+            if (!formData.get('address')) {
+                document.getElementById('error-umkm-address').innerText = 'Address is required.';
+                isValid = false;
+            }
+
+            // NPWP validation
+            if (!formData.get('npwp')) {
+                document.getElementById('error-umkm-npwp').innerText = 'NPWP is required.';
+                isValid = false;
+            }
+
+            if (isValid) {
+                // Perform the registration (e.g., send the data to the server)
+                fetch(form.action, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    if (data.success) {
+                        alert('Registration successful!');
+                    } else {
+                        alert('Registration failed: ' + data.message);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            }
+            document.getElementById('successModal').style.display = 'block';
+        }
+
+         // Close the modal when the user clicks on <span> (x)
+          document.getElementById('closeModal').addEventListener('click', function() {
+            document.getElementById('successModal').style.display = 'none';
+        });
+
+        // Close the modal when the user clicks anywhere outside of the modal
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('successModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+    </script>
+</body>
+</html>
